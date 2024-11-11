@@ -1,0 +1,207 @@
+
+
+
+ARM Macro Assembler    Page 1 
+
+
+    1 00000000         
+    2 00000000         
+    3 00000000 E000ED04 
+                       NVIC_INT_CTRL
+                               EQU              0xE000ED04  ;中断控制和状态寄存
+                                                            器的地址
+    4 00000000 E000ED22 
+                       NVIC_SYSPRI14
+                               EQU              0xE000ED22  ;系统处理器优先级寄
+                                                            存器14的地址
+    5 00000000 000000FF 
+                       NVIC_PENDSV_PRI
+                               EQU              0xFF        ;PendSV异常的优先级
+                                                            值
+    6 00000000 10000000 
+                       NVIC_PENDSVSET
+                               EQU              0x10000000  ;PendSV异常触发值
+    7 00000000         
+    8 00000000                 PRESERVE8
+    9 00000000                 THUMB
+   10 00000000         
+   11 00000000                 AREA             MYCODE, CODE, READONLY
+   12 00000000         
+   13 00000000                 EXTERN           SPC_Detector
+   14 00000000                 EXTERN           Task_Switch
+   15 00000000         
+   16 00000000         PendSV_Handler
+                               PROC
+   17 00000000                 EXPORT           PendSV_Handler
+   18 00000000         
+   19 00000000         ; 关闭中断
+   20 00000000 B672            CPSID            I
+   21 00000002         
+   22 00000002         
+   23 00000002         ; 检查 PSP, 如果这是第一个任务，防止发生未定义行为应该跳
+                       出保护
+   24 00000002 F3EF 8009       MRS              R0, PSP
+   25 00000006 B160            CBZ              R0, Load_New_Task
+   26 00000008         
+   27 00000008         Save_Current_Task                    ;保存任务
+   28 00000008 F3EF 8009       MRS              R0, PSP
+   29 0000000C E920 0FF0       STMDB            R0!, {R4-R11}
+   30 00000010 490A            LDR              R1, =SPC_Detector 
+                                                            ;获取到探头的地址
+   31 00000012 6809            LDR              R1, [R1]    ;解引用出探头中的SP
+                                                            C值
+   32 00000014 6809            LDR              R1, [R1]    ;解引用出探头中的SP
+                                                            C值下的TOR地址
+   33 00000016 6008            STR              R0, [R1]
+   34 00000018         
+   35 00000018         Select_Next_Task                     ;选择下一个任务
+   36 00000018 B500            PUSH             {LR}
+   37 0000001A F7FF FFFE       BL               Task_Switch
+   38 0000001E F85D EB04       POP              {LR}
+   39 00000022         
+   40 00000022         Load_New_Task                        ;加载任务
+   41 00000022 4806            LDR              R0, =SPC_Detector
+   42 00000024 6800            LDR              R0, [R0]
+   43 00000026 6800            LDR              R0, [R0]
+
+
+
+ARM Macro Assembler    Page 2 
+
+
+   44 00000028 6800            LDR              R0, [R0]
+   45 0000002A E8B0 0FF0       LDMIA            R0!, {R4-R11}
+   46 0000002E F380 8809       MSR              PSP, R0
+   47 00000032 F04E 0E04       ORR              LR, LR, #0x4 ; R1 |= 0x04 : lr 
+                                                            |= 32'b0000_0000_00
+                                                            00_0100
+   48 00000036         
+   49 00000036         ; 打开中断
+   50 00000036 B662            CPSIE            I
+   51 00000038         
+   52 00000038         ; return
+   53 00000038 4770            BX               LR
+   54 0000003A         
+   55 0000003A                 ENDP
+   56 0000003A         
+   57 0000003A BF00            NOP
+   58 0000003C         
+   59 0000003C                 END
+              00000000 
+Command Line: --debug --xref --diag_suppress=9931 --cpu=Cortex-M3 --apcs=interw
+ork --depend=.\objects\context_switch.d -o.\objects\context_switch.o -I.\RTE\_T
+arget_1 -ID:\MR.XU\soft\Keil5\data\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Inc
+lude -ID:\MR.XU\soft\Keil5\data\ARM\CMSIS\Include --predefine="__UVISION_VERSIO
+N SETA 524" --predefine="STM32F10X_MD SETA 1" --list=.\listings\context_switch.
+lst System\CONTEXT_SWITCH.s
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+Load_New_Task 00000022
+
+Symbol: Load_New_Task
+   Definitions
+      At line 40 in file System\CONTEXT_SWITCH.s
+   Uses
+      At line 25 in file System\CONTEXT_SWITCH.s
+Comment: Load_New_Task used once
+MYCODE 00000000
+
+Symbol: MYCODE
+   Definitions
+      At line 11 in file System\CONTEXT_SWITCH.s
+   Uses
+      None
+Comment: MYCODE unused
+PendSV_Handler 00000000
+
+Symbol: PendSV_Handler
+   Definitions
+      At line 16 in file System\CONTEXT_SWITCH.s
+   Uses
+      At line 17 in file System\CONTEXT_SWITCH.s
+Comment: PendSV_Handler used once
+Save_Current_Task 00000008
+
+Symbol: Save_Current_Task
+   Definitions
+      At line 27 in file System\CONTEXT_SWITCH.s
+   Uses
+      None
+Comment: Save_Current_Task unused
+Select_Next_Task 00000018
+
+Symbol: Select_Next_Task
+   Definitions
+      At line 35 in file System\CONTEXT_SWITCH.s
+   Uses
+      None
+Comment: Select_Next_Task unused
+5 symbols
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Absolute symbols
+
+NVIC_INT_CTRL E000ED04
+
+Symbol: NVIC_INT_CTRL
+   Definitions
+      At line 3 in file System\CONTEXT_SWITCH.s
+   Uses
+      None
+Comment: NVIC_INT_CTRL unused
+NVIC_PENDSVSET 10000000
+
+Symbol: NVIC_PENDSVSET
+   Definitions
+      At line 6 in file System\CONTEXT_SWITCH.s
+   Uses
+      None
+Comment: NVIC_PENDSVSET unused
+NVIC_PENDSV_PRI 000000FF
+
+Symbol: NVIC_PENDSV_PRI
+   Definitions
+      At line 5 in file System\CONTEXT_SWITCH.s
+   Uses
+      None
+Comment: NVIC_PENDSV_PRI unused
+NVIC_SYSPRI14 E000ED22
+
+Symbol: NVIC_SYSPRI14
+   Definitions
+      At line 4 in file System\CONTEXT_SWITCH.s
+   Uses
+      None
+Comment: NVIC_SYSPRI14 unused
+4 symbols
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+External symbols
+
+SPC_Detector 00000000
+
+Symbol: SPC_Detector
+   Definitions
+      At line 13 in file System\CONTEXT_SWITCH.s
+   Uses
+      At line 30 in file System\CONTEXT_SWITCH.s
+      At line 41 in file System\CONTEXT_SWITCH.s
+
+Task_Switch 00000000
+
+Symbol: Task_Switch
+   Definitions
+      At line 14 in file System\CONTEXT_SWITCH.s
+   Uses
+      At line 37 in file System\CONTEXT_SWITCH.s
+Comment: Task_Switch used once
+2 symbols
+345 symbols in table
