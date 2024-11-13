@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\Objects\Project.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\Objects\Project.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060528: Last Updated: Mon Nov 11 11:19:03 2024
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060528: Last Updated: Wed Nov 13 21:53:24 2024
 <BR><P>
 <H3>Maximum Stack Usage =        336 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -1221,16 +1221,16 @@ Global Symbols
 <P><STRONG><a name="[68]"></a>vector_Create</STRONG> (Thumb, 28 bytes, Stack size 40 bytes, vector.o(i.vector_Create))
 <BR><BR>[Stack]<UL><LI>Max Depth = 40<LI>Call Chain = vector_Create
 </UL>
-<BR>[Called By]<UL><LI><a href="#[64]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vector_Normalize
+<BR>[Called By]<UL><LI><a href="#[bb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vector_Scalar_Div
+<LI><a href="#[64]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vector_Normalize
 <LI><a href="#[60]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Camera_Init
-<LI><a href="#[bb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vector_Scalar_Div
 </UL>
 
 <P><STRONG><a name="[b9]"></a>vector_Magnitude</STRONG> (Thumb, 18 bytes, Stack size 16 bytes, vector.o(i.vector_Magnitude))
 <BR><BR>[Stack]<UL><LI>Max Depth = 88<LI>Call Chain = vector_Magnitude &rArr; vector_MagnitudeSquare &rArr; __aeabi_dmul
 </UL>
-<BR>[Calls]<UL><LI><a href="#[b7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sqrt
-<LI><a href="#[ba]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vector_MagnitudeSquare
+<BR>[Calls]<UL><LI><a href="#[ba]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vector_MagnitudeSquare
+<LI><a href="#[b7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sqrt
 </UL>
 <BR>[Called By]<UL><LI><a href="#[64]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vector_Normalize
 </UL>
@@ -1247,12 +1247,12 @@ Global Symbols
 <P><STRONG><a name="[64]"></a>vector_Normalize</STRONG> (Thumb, 232 bytes, Stack size 56 bytes, vector.o(i.vector_Normalize))
 <BR><BR>[Stack]<UL><LI>Max Depth = 152<LI>Call Chain = vector_Normalize &rArr; vector_Scalar_Div &rArr; vector_Create
 </UL>
-<BR>[Calls]<UL><LI><a href="#[68]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vector_Create
+<BR>[Calls]<UL><LI><a href="#[bb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vector_Scalar_Div
+<LI><a href="#[b9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vector_Magnitude
+<LI><a href="#[68]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vector_Create
 <LI><a href="#[62]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_cdrcmple
 <LI><a href="#[61]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_cdcmple
 <LI><a href="#[71]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_i2d
-<LI><a href="#[bb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vector_Scalar_Div
-<LI><a href="#[b9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vector_Magnitude
 </UL>
 <BR>[Called By]<UL><LI><a href="#[60]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Camera_Init
 </UL>
@@ -1278,13 +1278,13 @@ Global Symbols
 <P><STRONG><a name="[6d]"></a>__aeabi_dadd</STRONG> (Thumb, 0 bytes, Stack size 16 bytes, daddsub_clz.o(x$fpl$dadd))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = __aeabi_dadd
 </UL>
-<BR>[Called By]<UL><LI><a href="#[6e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Camera_Render
+<BR>[Called By]<UL><LI><a href="#[ba]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vector_MagnitudeSquare
+<LI><a href="#[6e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Camera_Render
 <LI><a href="#[69]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Camera_LeftPan
 <LI><a href="#[a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__kernel_poly
 <LI><a href="#[a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__kernel_tan
 <LI><a href="#[a3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__kernel_sin
 <LI><a href="#[9e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__ieee754_rem_pio2
-<LI><a href="#[ba]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vector_MagnitudeSquare
 </UL>
 
 <P><STRONG><a name="[bc]"></a>_dadd</STRONG> (Thumb, 332 bytes, Stack size 16 bytes, daddsub_clz.o(x$fpl$dadd), UNUSED)
@@ -1306,11 +1306,11 @@ Global Symbols
 <P><STRONG><a name="[66]"></a>__aeabi_ddiv</STRONG> (Thumb, 0 bytes, Stack size 32 bytes, ddiv.o(x$fpl$ddiv))
 <BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = __aeabi_ddiv
 </UL>
-<BR>[Called By]<UL><LI><a href="#[60]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Camera_Init
+<BR>[Called By]<UL><LI><a href="#[bb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vector_Scalar_Div
+<LI><a href="#[60]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Camera_Init
 <LI><a href="#[6e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Camera_Render
 <LI><a href="#[a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__kernel_tan
 <LI><a href="#[a8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__mathlib_dbl_invalid
-<LI><a href="#[bb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vector_Scalar_Div
 </UL>
 
 <P><STRONG><a name="[c2]"></a>_ddiv</STRONG> (Thumb, 552 bytes, Stack size 32 bytes, ddiv.o(x$fpl$ddiv), UNUSED)
@@ -1349,10 +1349,10 @@ Global Symbols
 <P><STRONG><a name="[61]"></a>__aeabi_cdcmple</STRONG> (Thumb, 0 bytes, Stack size 32 bytes, dleqf.o(x$fpl$dleqf))
 <BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = __aeabi_cdcmple
 </UL>
-<BR>[Called By]<UL><LI><a href="#[64]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vector_Normalize
+<BR>[Called By]<UL><LI><a href="#[bb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vector_Scalar_Div
+<LI><a href="#[64]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vector_Normalize
 <LI><a href="#[60]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Camera_Init
 <LI><a href="#[6e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Camera_Render
-<LI><a href="#[bb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vector_Scalar_Div
 </UL>
 
 <P><STRONG><a name="[c4]"></a>_dcmple</STRONG> (Thumb, 120 bytes, Stack size 32 bytes, dleqf.o(x$fpl$dleqf), UNUSED)
@@ -1367,7 +1367,8 @@ Global Symbols
 <P><STRONG><a name="[65]"></a>__aeabi_dmul</STRONG> (Thumb, 0 bytes, Stack size 32 bytes, dmul.o(x$fpl$dmul))
 <BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = __aeabi_dmul
 </UL>
-<BR>[Called By]<UL><LI><a href="#[60]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Camera_Init
+<BR>[Called By]<UL><LI><a href="#[ba]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vector_MagnitudeSquare
+<LI><a href="#[60]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Camera_Init
 <LI><a href="#[6e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Camera_Render
 <LI><a href="#[69]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Camera_LeftPan
 <LI><a href="#[a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__kernel_poly
@@ -1375,7 +1376,6 @@ Global Symbols
 <LI><a href="#[a3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__kernel_sin
 <LI><a href="#[9e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__ieee754_rem_pio2
 <LI><a href="#[a1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__kernel_cos
-<LI><a href="#[ba]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vector_MagnitudeSquare
 </UL>
 
 <P><STRONG><a name="[c6]"></a>_dmul</STRONG> (Thumb, 332 bytes, Stack size 32 bytes, dmul.o(x$fpl$dmul), UNUSED)

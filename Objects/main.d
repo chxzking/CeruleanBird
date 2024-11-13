@@ -1,7 +1,7 @@
 .\objects\main.o: User\main.c
 .\objects\main.o: .\Start\stm32f10x.h
 .\objects\main.o: .\Start\core_cm3.h
-.\objects\main.o: D:\MR.XU\soft\Keil5\data\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\main.o: D:\DevelopmentTool\Keil\data\Core\ARM\ARMCC\Bin\..\include\stdint.h
 .\objects\main.o: .\Start\system_stm32f10x.h
 .\objects\main.o: .\User\stm32f10x_conf.h
 .\objects\main.o: .\Library\stm32f10x_adc.h
@@ -29,8 +29,8 @@
 .\objects\main.o: .\Library\stm32f10x_wwdg.h
 .\objects\main.o: .\Library\misc.h
 .\objects\main.o: .\Hardware\OLED.h
-.\objects\main.o: D:\MR.XU\soft\Keil5\data\ARM\ARMCC\Bin\..\include\stdio.h
-.\objects\main.o: D:\MR.XU\soft\Keil5\data\ARM\ARMCC\Bin\..\include\math.h
+.\objects\main.o: D:\DevelopmentTool\Keil\data\Core\ARM\ARMCC\Bin\..\include\stdio.h
+.\objects\main.o: D:\DevelopmentTool\Keil\data\Core\ARM\ARMCC\Bin\..\include\math.h
 .\objects\main.o: .\CeruleanBird\include\Camera_API.h
 .\objects\main.o: .\CeruleanBird\private\vector.h
 .\objects\main.o: .\CeruleanBird\config\engine_config.h

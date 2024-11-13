@@ -1,7 +1,7 @@
 .\objects\five_way_key.o: Hardware\five_way_key.c
 .\objects\five_way_key.o: .\Start\stm32f10x.h
 .\objects\five_way_key.o: .\Start\core_cm3.h
-.\objects\five_way_key.o: D:\MR.XU\soft\Keil5\data\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\five_way_key.o: D:\DevelopmentTool\Keil\data\Core\ARM\ARMCC\Bin\..\include\stdint.h
 .\objects\five_way_key.o: .\Start\system_stm32f10x.h
 .\objects\five_way_key.o: .\User\stm32f10x_conf.h
 .\objects\five_way_key.o: .\Library\stm32f10x_adc.h
@@ -28,5 +28,5 @@
 .\objects\five_way_key.o: .\Library\stm32f10x_usart.h
 .\objects\five_way_key.o: .\Library\stm32f10x_wwdg.h
 .\objects\five_way_key.o: .\Library\misc.h
-.\objects\five_way_key.o: D:\MR.XU\soft\Keil5\data\ARM\ARMCC\Bin\..\include\stdlib.h
+.\objects\five_way_key.o: D:\DevelopmentTool\Keil\data\Core\ARM\ARMCC\Bin\..\include\stdlib.h
 .\objects\five_way_key.o: Hardware\five_way_key.h

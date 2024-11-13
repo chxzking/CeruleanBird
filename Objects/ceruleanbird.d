@@ -4,4 +4,4 @@
 .\objects\ceruleanbird.o: .\CeruleanBird\include\Camera_API.h
 .\objects\ceruleanbird.o: .\CeruleanBird\private\vector.h
 .\objects\ceruleanbird.o: .\CeruleanBird\include\Canvas_API.h
-.\objects\ceruleanbird.o: D:\MR.XU\soft\Keil5\data\ARM\ARMCC\Bin\..\include\stdio.h
+.\objects\ceruleanbird.o: D:\DevelopmentTool\Keil\data\Core\ARM\ARMCC\Bin\..\include\stdio.h

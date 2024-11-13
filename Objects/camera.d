@@ -4,11 +4,11 @@
 .\objects\camera.o: .\CeruleanBird\include\Camera_API.h
 .\objects\camera.o: .\CeruleanBird\private\vector.h
 .\objects\camera.o: .\CeruleanBird\config\engine_config.h
-.\objects\camera.o: D:\MR.XU\soft\Keil5\data\ARM\ARMCC\Bin\..\include\math.h
+.\objects\camera.o: D:\DevelopmentTool\Keil\data\Core\ARM\ARMCC\Bin\..\include\math.h
 .\objects\camera.o: .\CeruleanBird\private\TextureMapper_internal.h
 .\objects\camera.o: .\CeruleanBird\include\TextureMapper_API.h
 .\objects\camera.o: .\CeruleanBird\include\Canvas_API.h
-.\objects\camera.o: D:\MR.XU\soft\Keil5\data\ARM\ARMCC\Bin\..\include\stdio.h
+.\objects\camera.o: D:\DevelopmentTool\Keil\data\Core\ARM\ARMCC\Bin\..\include\stdio.h
 .\objects\camera.o: .\CeruleanBird\private\WorldMap_internal.h
 .\objects\camera.o: .\CeruleanBird\include\WorldMap_API.h
 .\objects\camera.o: .\CeruleanBird\include\heap_solution_1.h

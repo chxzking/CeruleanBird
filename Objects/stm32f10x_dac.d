@@ -2,7 +2,7 @@
 .\objects\stm32f10x_dac.o: Library\stm32f10x_dac.h
 .\objects\stm32f10x_dac.o: .\Start\stm32f10x.h
 .\objects\stm32f10x_dac.o: .\Start\core_cm3.h
-.\objects\stm32f10x_dac.o: D:\MR.XU\soft\Keil5\data\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\stm32f10x_dac.o: D:\DevelopmentTool\Keil\data\Core\ARM\ARMCC\Bin\..\include\stdint.h
 .\objects\stm32f10x_dac.o: .\Start\system_stm32f10x.h
 .\objects\stm32f10x_dac.o: .\User\stm32f10x_conf.h
 .\objects\stm32f10x_dac.o: .\Library\stm32f10x_adc.h

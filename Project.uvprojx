@@ -758,6 +758,11 @@
               <FileType>1</FileType>
               <FilePath>.\CeruleanBird\source\EngineFault.c</FilePath>
             </File>
+            <File>
+              <FileName>Stack.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\CeruleanBird\source\Stack.c</FilePath>
+            </File>
           </Files>
         </Group>
       </Groups>
