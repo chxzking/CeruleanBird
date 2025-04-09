@@ -67,3 +67,17 @@ void EngineFault_InadequateResources_Handle(void){
 		
 	}
 }
+
+
+/**
+	 @brief 越界访问异常的枚举参数
+
+	//【错误】<枚举错误访问>
+	EngineFault_ExceptionEnumParam_Handle();
+*/
+void EngineFault_ExceptionEnumParam_Handle(void){
+	
+	while(1){
+		
+	}
+}

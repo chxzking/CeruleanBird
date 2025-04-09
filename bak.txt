@@ -1,0 +1,112 @@
+/**
+*	@brief	播放当前就绪的动画帧
+*	@param	
+*		@arg	sprites	精灵对象
+*	@retval	
+*		@arg	播放失败返回错误值 -1；
+*		@arg	播放成功返回0
+*/
+int Sprites_Animation_PlayFrame(Sprites_t* sprites){
+	/*
+	
+	
+	
+	
+	
+	*/
+}
+
+//基本的精灵运行逻辑
+/*
+想法如下：
+	攻击是高的优先级，应该首先使用攻击API判断是否进入了攻击范围
+																									--》未到达攻击范围
+*/
+void func(Camera_Struct* camera,Sprites_t* sprites){
+	if(camera == C_NULL || sprites == C_NULL) return;
+	
+	//精灵攻击行为处理
+	if(sprites->SpritesAction.SpritesAttackHandle != C_NULL){
+		
+	
+		
+	}
+	
+	//精灵移动行为处理
+	if(sprites->SpritesAction.SpritesMoveHandle != C_NULL){
+		
+	}
+	
+	//精灵与墙体碰撞行为处理
+	if(sprites->SpritesAction.SpritesWallCollHandle != C_NULL){
+		
+		
+	}
+	
+	//精灵与玩家碰撞行为处理
+	if(sprites->SpritesAction.SpritesPlayerCollHandle != C_NULL){
+		
+	}
+	
+	
+	
+	
+	
+}
+
+////渲染精灵(测试，没有正式定稿)
+//void Sprites_Show(Sprites_t* sprites){
+//	if(sprites == C_NULL)	return;
+//	//获取指定的精灵管理器
+//	SpritesManager_t* SpritesManager = (SpritesManager_t*)search(Sprites_Header,sprites->value);
+//	if(SpritesManager == C_NULL)	return;//目标管理器不存在，返回
+//	
+//	//获取当前执行的动画链
+//	if(sprites->CurrentAnimationChainIndex >= SpritesManager->AnimationChainCount)	return;//动画链索引存在错误
+//	
+//	SpritesLinkNode_t* node = sprites->ReadyAnimation;
+//	int row = node->record->Logic_ROW;
+//	int col = node->record->Column;
+//	
+//	for(int i = 0;i<row;i++){
+//	//int reuslt = Sprites_Extract(node,int ROW_Pixel,int COL_Pixel)
+//		for(int j = 0;j<col;j++){
+//			int result = Sprites_Extract(node,i,j);
+//			if(result == 1){
+//				Pixel_Operate(i,j,OPEN);
+//			}
+//			else if(result == 0){
+//				Pixel_Operate(i,j,CLOSE);
+//			}
+//		}
+//	}
+//	
+//	sprites->ReadyAnimation = sprites->ReadyAnimation->next;
+//}
+
+
+//
+
+//精灵移动
+
+//在行的正方向移动一个步距单位
+void Sprites_ForwardMove_InRow(Sprites_t* sprites){
+	if(sprites == C_NULL)	return;
+	sprites->posRow += sprites->MoveSpeed;
+}
+//在列的正方向移动一个步距单位
+void Sprites_ForwardMove_InCol(Sprites_t* sprites){
+	if(sprites == C_NULL)	return;
+	sprites->posCol += sprites->MoveSpeed;
+}
+//在行的负方向移动一个步距单位
+void Sprites_ReverseMove_InRow(Sprites_t* sprites){
+	if(sprites == C_NULL)	return;
+	sprites->posRow -= sprites->MoveSpeed;
+}
+//在列的负方向移动一个步距单位
+void Sprites_ReverseMove_InCol(Sprites_t* sprites){
+	if(sprites == C_NULL)	return;
+	sprites->posCol -= sprites->MoveSpeed;
+}
+	

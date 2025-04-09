@@ -336,7 +336,7 @@
               <MiscControls></MiscControls>
               <Define>USE_STDPERIPH_DRIVER</Define>
               <Undefine></Undefine>
-              <IncludePath>.\Start;.\User;.\Library;.\System;.\Hardware;.\OLEDLib;.\CeruleanBird\config;.\CeruleanBird\include;.\CeruleanBird\private</IncludePath>
+              <IncludePath>.\Start;.\User;.\Library;.\System;.\Hardware;.\OLEDLib;.\CeruleanBird\config;.\CeruleanBird\include;.\CeruleanBird\private;.\Hardware\OLED\include;.\Hardware\OLED\platform_drivers_include</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -654,21 +654,6 @@
           <GroupName>Hardware</GroupName>
           <Files>
             <File>
-              <FileName>OLED.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\Hardware\OLED.c</FilePath>
-            </File>
-            <File>
-              <FileName>OLED.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\Hardware\OLED.h</FilePath>
-            </File>
-            <File>
-              <FileName>OLED_Font.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\Hardware\OLED_Font.h</FilePath>
-            </File>
-            <File>
               <FileName>five_way_key.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\Hardware\five_way_key.h</FilePath>
@@ -703,10 +688,15 @@
               <FileType>5</FileType>
               <FilePath>.\User\stm32f10x_it.h</FilePath>
             </File>
+            <File>
+              <FileName>animation.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\User\animation.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
-          <GroupName>New Group</GroupName>
+          <GroupName>CeruleanBird</GroupName>
           <Files>
             <File>
               <FileName>bit_operate.c</FileName>
@@ -762,6 +752,51 @@
               <FileName>Stack.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\CeruleanBird\source\Stack.c</FilePath>
+            </File>
+            <File>
+              <FileName>FrameRateStrategy.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\CeruleanBird\source\FrameRateStrategy.c</FilePath>
+            </File>
+            <File>
+              <FileName>Sprites_Animation.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\CeruleanBird\source\Sprites_Animation.c</FilePath>
+            </File>
+            <File>
+              <FileName>Sprites_Logical.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\CeruleanBird\source\Sprites_Logical.c</FilePath>
+            </File>
+            <File>
+              <FileName>Sprites_BehaviorTree.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\CeruleanBird\source\Sprites_BehaviorTree.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>OLED</GroupName>
+          <Files>
+            <File>
+              <FileName>Mistink.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Hardware\OLED\source\Mistink.c</FilePath>
+            </File>
+            <File>
+              <FileName>Mistink_Displayer.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Hardware\OLED\source\Mistink_Displayer.c</FilePath>
+            </File>
+            <File>
+              <FileName>M_stm32f103c8t6.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Hardware\OLED\platform_drivers\M_stm32f103c8t6.c</FilePath>
+            </File>
+            <File>
+              <FileName>Mistink_Font.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Hardware\OLED\font\Mistink_Font.c</FilePath>
             </File>
           </Files>
         </Group>

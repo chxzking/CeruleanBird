@@ -1,6 +1,6 @@
 #ifndef __ENGINE_CONFIG_H__
 #define __ENGINE_CONFIG_H__
-
+#include <stdint.h>
 
 /****************************
 *	屏幕分辨率设置
@@ -31,8 +31,8 @@ typedef unsigned char ScreenType;					//定义 配置"屏幕变量"类型
 
 
 
-
-
-
+#define MOVABLE_AREA_VALUE			0									//设置地图中空地值（地图中有且仅有一个确定的空地值），摄像机可以移动的地图值，也就是空地的值（可被修改，但是不建议，所以放在私有文件中）
+typedef double DeepBuffer_t;											//深度缓冲区类型
+#define POSITIVE_INFINITY		(*(DeepBuffer_t*)&(uint64_t){0x7FF0000000000000})	//深度缓冲的正无穷大
 
 #endif

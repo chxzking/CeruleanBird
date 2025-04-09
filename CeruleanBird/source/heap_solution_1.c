@@ -117,6 +117,7 @@ void memory_pool_init(void) {
 	return;
 }
 void* c_malloc(unsigned int size){
+	memory_pool_init();//内存初始化
 	if(size == 0)	return C_NULL;//校验输入
 	//获取第一个空闲区块
 	MemoryBlock* current = BlockListHeader;

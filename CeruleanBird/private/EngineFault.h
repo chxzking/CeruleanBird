@@ -15,4 +15,7 @@ void EngineFault_IllegalFree_Handle(void);
 
 //资源不足
 void EngineFault_InadequateResources_Handle(void);
+
+//枚举错误
+void EngineFault_ExceptionEnumParam_Handle(void);
 #endif

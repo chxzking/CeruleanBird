@@ -29,7 +29,7 @@ RB_Node* TextureMapper_Header = C_NULL;
 *****************/
 
 //添加纹理
-int Texture_Add(int value,unsigned char* Texture_Picture,\
+int Texture_Add(int value,const unsigned char* Texture_Picture,\
 	int Texture_Row_Pixel,int Texture_COL_Pixel,TEXTURE_TYPE Texture_Type){
 	#if HEAP_MEMORY_CONFIG == MEMORY_MODE_1          //启用引擎动态内存解决方案
 		memory_pool_init();
@@ -71,7 +71,7 @@ TextureMapperDef* Texture_GetTexture(int value){
 	TextureMapperDef* result = (TextureMapperDef*)search(TextureMapper_Header, value);
 	return result;
 }
-unsigned char* Texture_GetArray(int value){
+const unsigned char* Texture_GetArray(int value){
 	TextureMapperDef* result = (TextureMapperDef*)search(TextureMapper_Header, value);
 	if(result == C_NULL){
 		return C_NULL;

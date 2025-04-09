@@ -34,7 +34,7 @@ typedef struct TextureMapperDef TextureMapperDef;
 *		@arg	如果返回结果是1，意味着该值已经存在
 *		@arg	如果返回结果是-1，意味着内存分配失败或者参数错误
 */
-int Texture_Add(int value,unsigned char* Texture_Picture,\
+int Texture_Add(int value,const unsigned char* Texture_Picture,\
 	int Texture_Row_Pixel,int Texture_COL_Pixel,TEXTURE_TYPE Texture_Type);
 /**
 *	@brief	删除引擎中指定的纹理
@@ -105,7 +105,7 @@ TextureMapperDef* Texture_GetTexture(int value);
 *		@arg	value	绑定的值
 *	@retval	获取成功返回纹理数组地址，获取失败返回空
 */
-unsigned char* Texture_GetArray(int value);
+const unsigned char* Texture_GetArray(int value);
 /**
 *	@brief	获取指定绑定值的纹理类型
 *	@param	

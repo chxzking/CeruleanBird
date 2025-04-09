@@ -65,10 +65,10 @@ void WorldMap_Delete(int value);
 *	@retval	none；
 *	@note	耗时相对较长
 */
+void WorldMap_Free(void);
 /*****************************
 		【修改操作】
 ******************************/
-void WorldMap_Free(void);
 /**
 *	@brief	修改绑定的地图数组绑定的值
 *	@param	
