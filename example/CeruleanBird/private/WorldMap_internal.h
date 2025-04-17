@@ -31,5 +31,5 @@ WorldMapDef* WorldMap_GetWorldMap(int value);
 *		@arg	异常操作，跳转引擎异常函数
 *		@arg	获取成功返回地图的值
 */
-int WorldMap_Extract(WorldMapDef* worldmap,int ROW,int COL);	
+int WorldMap_Extract(WorldMapDef* worldmap,int ROW,int COL);
 #endif

@@ -64,6 +64,12 @@ Camera_Struct* Camera_Init(Camera_InitTypeDef* Camera_InitStruct);
 void Camera_Render(Camera_Struct* camera);
 vector Camera_GetPos(Camera_Struct* camera);
 
+//私有数据
+int CameraPriv_Add(Camera_Struct* camera,void* data,void (*__FreeHandle)(void* ptr));
+int CameraPriv_Replace(Camera_Struct* camera,void* data,void (*__FreeHandle)(void* ptr));
+int CameraPriv_Reset(Camera_Struct* camera);
+void* CameraPriv_Get(Camera_Struct* camera);
+
 
 /*******************
 	【镜头移动】
@@ -83,8 +89,5 @@ void Camera_BackMove(Camera_Struct* camera);
 void Camera_LeftPan(Camera_Struct* camera);
 //镜头右旋
 void Camera_RightPan(Camera_Struct* camera);
-//视角左偏转
-void Camera_LeftTilt(Camera_Struct* camera);
-//视角右偏转
-void Camera_RightTilt(Camera_Struct* camera);
+
 #endif

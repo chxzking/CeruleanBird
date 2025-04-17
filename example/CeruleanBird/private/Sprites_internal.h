@@ -83,8 +83,6 @@ struct SpritesBase_t{
 	double posRow;															//精灵行位置
 	double posCol;															//精灵列位置
 	int VerticalOffset;														//精灵的垂直方向的偏移量(正数向上偏移，负数向下偏移，单位：像素)
-	/*地图位置信息*/
-	int map_value;															//精灵所在的地图编号
 	/*帧率协调*/
 	float accumulatedTime;													//累计时间
 	/*模块*/

@@ -30,32 +30,6 @@
 			
 */
 
-/*
-【精灵状态】
-	【状态类型】
-		非活跃态：
-			1、隐藏状态：精灵完全被引擎忽略， 除非被外界主动唤醒，否则将无法被引擎执行
-			
-			2、死亡状态：精灵死亡，此时停止执行逻辑，执行当前的结束动画（火球爆炸）或者立即结束（弓箭）(最后陷入隐藏状态)
-			
-		活跃态：
-			1、空转状态：精灵的执行逻辑处于停止，继续播放当前动画。（可以用于对短帧率逻辑和长帧率动画不匹配时进行逻辑填充，以保证动画正常进行）
-			
-			2、静止状态：精灵的执行逻辑处于停止，并且动画也处于停止状态，此时精灵会保持上一次状态的动画帧静止在地图中。
-			
-			3、移动状态：精灵执行移动逻辑，播放动画。
-						|
-						+--->自由移动：例如：敌方npc没有发现玩家时的随机运动
-						|
-						+--->定向移动：例如：敌方NPC朝着玩家移动
-			
-			4、攻击状态：精灵执行攻击逻辑，播放动画
-			
-			5、受击状态：精灵执行首击逻辑，播放动画
-		
-			n、自定义状态：待定
-*/
-
 
 /*定义--------------------------------------------------------------------------------*/
 
@@ -108,6 +82,7 @@ typedef SITindex_t (*SIT_MapIndexHandle_t)(Sprites_t* Sprites,void* privateData)
 	*	
 	*	@note	节点解释：
 	*					【条件容器节点】它的主要作用是实现条件判断，也类似于if，根据此节点挂载的条件函数处理结果，返回对应的布尔值
+	*									注意条件容器不能单独存在，只能存在与封装容器内部。例如不能放在根节点上，否则会导致行为树出现未知错误。
 	*					【选择器容器节点】它的主要作用是选择执行挂载于此节点的行为组，直到执行完成一次返回结果为真的节点。例如
 	*												[Selector]
 	*												 ├── [Condition] 目标是否在远程攻击范围？ → [Action] 远程攻击
@@ -134,7 +109,7 @@ typedef SITindex_t (*SIT_MapIndexHandle_t)(Sprites_t* Sprites,void* privateData)
 	*					[Root] 
 	*					 ├── (选择) [是否看到玩家？]
 	*					 │   ├── (顺序) 远程攻击逻辑
-	*					 │   │   ├── (条件) 玩家距离适中？
+	*					 │   │   ├── (条件) 玩家距离适中？---->条件容器是过滤作用，用于阻拦在执行容器前，用于层层选择似乎执行被保护的执行节点。注意条件容器不能单独存在，只能存在与封装容器内部
 	*					 │   │   ├── (执行) 远程射击
 	*					 │   ├── (顺序) 近战应对逻辑
 	*					 │   │   ├── (条件) 玩家距离太近？
@@ -148,7 +123,7 @@ typedef enum{
 	SBT_Condition,								/*!<条件容器节点			*/
 	SBT_Action, 								/*!<动作容器节点			*/
 	SBT_Selector,								/*!<选择器容器节点		*/
-	SBT_Sequence 								/*!<顺序流容器	节点	*/
+	SBT_Sequence 								/*!<顺序流容器节点		*/
 }SpriteBTType_t;
 
 
@@ -295,22 +270,24 @@ int SpritesIT_Disable(Sprites_t* Sprites);
 
 /*普通精灵接口--------------------------------------------------------------------*/
 //普通精灵接口
-Sprites_t* Sprites_ObjectCreate(int AnimationManageIndex,double posRow,double posCol,unsigned char defaultAnimationChainIndex,double moveSpeed,int map_value,int BehaviorTreeValue);
+Sprites_t* Sprites_ObjectCreate(int AnimationManageIndex,double posRow,double posCol,unsigned char defaultAnimationChainIndex,double moveSpeed,int BehaviorTreeValue);
 
 //位置操作
-int SpritesMov_SetDir(Sprites_t* sprites,vector dir);
-vector SpritesMov_GetDir(Sprites_t* sprites);
 int SpritesMov_Left(Sprites_t* sprite);
 int SpritesMov_Right(Sprites_t* sprite);
 int SpritesMov_Forward(Sprites_t* sprite);
 int SpritesMov_Backward(Sprites_t* sprite);
+int SpritesMov_SetDir(Sprites_t* sprites,vector dir);
+vector SpritesMov_GetDir(Sprites_t* sprites);
 int SpritesMov_SetDirToCamera(Sprites_t* sprites,Camera_Struct* camera);
 int SpritesMov_SetDirWithCamera(Sprites_t* sprites,Camera_Struct* camera);
 int SpritesMov_SetPosToCamera(Sprites_t* sprites,Camera_Struct* camera);
+int SpritesMov_SetPos(Sprites_t* sprites,double row,double col);
+int SpritesMov_SetPosToSprite(Sprites_t* Target_Sprite,Sprites_t* reference_Sprite);
 int Sprites_collisionWallValue(Sprites_t* sprite);
 
 /*静态精灵接口--------------------------------------------------------------------*/
-SpritesStatic_t* SpritesStatic_ObjectCreate(int AnimationManageIndex,double posRow,double posCol,unsigned char defaultAnimationChainIndex,int map_value);
+SpritesStatic_t* SpritesStatic_ObjectCreate(int AnimationManageIndex,double posRow,double posCol,unsigned char defaultAnimationChainIndex);
 
 /*精灵通用操作接口----------------------------------------------------------------*/
 int SpritesData_SetVerticalHeight(SpritesBase_t* sprites,int VerticalHeight);

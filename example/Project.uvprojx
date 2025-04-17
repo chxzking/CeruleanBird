@@ -336,7 +336,7 @@
               <MiscControls></MiscControls>
               <Define>USE_STDPERIPH_DRIVER</Define>
               <Undefine></Undefine>
-              <IncludePath>.\Start;.\User;.\Library;.\System;.\Hardware;.\OLEDLib;.\CeruleanBird\config;.\CeruleanBird\include;.\CeruleanBird\private;.\Hardware\OLED\include;.\Hardware\OLED\platform_drivers_include</IncludePath>
+              <IncludePath>.\Start;.\User;.\Library;.\System;.\Hardware;.\OLEDLib;.\CeruleanBird\config;.\CeruleanBird\include;.\CeruleanBird\private;.\Hardware\OLED\include;.\Hardware\OLED\platform_drivers_include;.\Game</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -688,11 +688,6 @@
               <FileType>5</FileType>
               <FilePath>.\User\stm32f10x_it.h</FilePath>
             </File>
-            <File>
-              <FileName>animation.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\User\animation.c</FilePath>
-            </File>
           </Files>
         </Group>
         <Group>
@@ -797,6 +792,66 @@
               <FileName>Mistink_Font.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\Hardware\OLED\font\Mistink_Font.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>Game</GroupName>
+          <Files>
+            <File>
+              <FileName>animation.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Game\animation.c</FilePath>
+            </File>
+            <File>
+              <FileName>pistol.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Game\pistol.c</FilePath>
+            </File>
+            <File>
+              <FileName>pistol.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\Game\pistol.h</FilePath>
+            </File>
+            <File>
+              <FileName>map.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Game\map.c</FilePath>
+            </File>
+            <File>
+              <FileName>map.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\Game\map.h</FilePath>
+            </File>
+            <File>
+              <FileName>Enemy.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Game\Enemy.c</FilePath>
+            </File>
+            <File>
+              <FileName>Enemy.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\Game\Enemy.h</FilePath>
+            </File>
+            <File>
+              <FileName>Common.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\Game\Common.h</FilePath>
+            </File>
+            <File>
+              <FileName>Common.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Game\Common.c</FilePath>
+            </File>
+            <File>
+              <FileName>key.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Game\key.c</FilePath>
+            </File>
+            <File>
+              <FileName>key.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\Game\key.h</FilePath>
             </File>
           </Files>
         </Group>

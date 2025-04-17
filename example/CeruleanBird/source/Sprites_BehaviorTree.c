@@ -469,7 +469,7 @@ int SpritesBT_MountToRoot(int value, SpriteBTNode_t* node) {
 *		@arg	Sprites 行为树的精灵本体（其中包含了精灵的信息，以及精灵的私有数据空间）
 *	@retval
 *
-*		待定
+*		执行结果
 */
 SpriteBTStatus_t ExecuteBehaviorTree(SpriteBTNode_t* root, Sprites_t* Sprites) {
 	SpriteBTStatus_t result;
@@ -548,7 +548,6 @@ int SpritesBT_BusExecute(Sprites_t* Sprites) {
 	}
 	
 	//检查是否产生中断
-	//if(Sprites->BehaviorMoudle.IT_Enable == 1 && Sprites->BehaviorMoudle.IT_flag == 1){//执行中断表
 	if(Sprites->BehaviorMoudle.IT_Enable == 1){//执行中断表
 		//执行中断
 		

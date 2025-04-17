@@ -84,17 +84,21 @@ void* Sprites_Exec(Camera_Struct* camera){
 	//整理精灵渲染顺序
 	SpritesTree_Sort(camera);
 	//逐步精灵计算
-	SpritesTreeNode_t* spritesNode = SpritesTree->head;
-	while(spritesNode != NULL){
+	SpritesTreeNode_t* current = SpritesTree->head;
+	while(current != NULL){
+		// 缓存下一个节点的指针（预缓存可防止当前精灵进入睡眠态的时候，探针错误进入睡眠态链表执行）
+        SpritesTreeNode_t* next = current->next;
+		
 		//更新精灵数据
-		if(Sprites_SingleUpdate(spritesNode->SpriteTrDescript.sprite, spritesNode->SpriteTrDescript.SpriteFeature) != 0){
+		if(Sprites_SingleUpdate(current ->SpriteTrDescript.sprite, current ->SpriteTrDescript.SpriteFeature) != 0){
 			break;//精灵更新失败，跳过此精灵
 		}
 		
 		//渲染此精灵
-		Sprites_SingleRender(spritesNode->SpriteTrDescript.sprite ,camera);
-		//更新节点
-		spritesNode = spritesNode->next;
+		Sprites_SingleRender(current ->SpriteTrDescript.sprite ,camera);
+		
+		// 继续用缓存的 next 指针遍历
+        current = next;
 	}
 	//返回引擎共享数据空间
 	return camera->Engine_Common_Data.data;
@@ -201,14 +205,13 @@ int BresenhamLine_WallDetect(int x1, int y1, int x2, int y2) {
 *		@arg	posCol	精灵位置纵坐标
 *		@arg	defaultAnimationChainIndex 设置默认动画链的序号
 *		@arg	moveSpeed 精灵的移动速度
-*		@arg  map_value 地图代号
 *		@arg  StateHandle 状态机句柄
 *	@retval	
 *		@arg	创键失败返回 空；
 *		@arg	创建成功返回 精灵地址
 */
 Sprites_t* Sprites_ObjectCreate(int AnimationManageIndex,double posRow,double posCol,unsigned char defaultAnimationChainIndex,\
-	double moveSpeed,int map_value,int BehaviorTreeValue){
+	double moveSpeed,int BehaviorTreeValue){
 	//分配内存
 	Sprites_t* sprites = (Sprites_t*)malloc(sizeof(Sprites_t));
 	if(sprites == C_NULL)	return C_NULL;
@@ -222,7 +225,6 @@ Sprites_t* Sprites_ObjectCreate(int AnimationManageIndex,double posRow,double po
 		
 	//累积值初始化		
 	sprites->SpritesBase.accumulatedTime = 0.0;	
-	sprites->SpritesBase.map_value = map_value;	
 	sprites->MoveSpeed = moveSpeed;		
 		
 	//动画树配置
@@ -543,7 +545,37 @@ int SpritesMov_SetPosToCamera(Sprites_t* sprites,Camera_Struct* camera){
 	sprites->SpritesBase.posCol = camera->position.y;
 	return 0;
 }
-
+/**
+*	@brief	设置精灵与精灵位置重合位置
+*	@param	
+*		@arg	Target_Sprite 被设置的精灵体
+*		@arg	reference_Sprite 参考精灵体
+*	@retval	
+*		@arg	执行成功返回 0
+*		@arg	执行失败返回 -1
+*/
+int SpritesMov_SetPosToSprite(Sprites_t* Target_Sprite,Sprites_t* reference_Sprite){
+	if(reference_Sprite == NULL || Target_Sprite == NULL) return -1;
+	Target_Sprite->SpritesBase.posRow = reference_Sprite->SpritesBase.posRow;
+	Target_Sprite->SpritesBase.posCol = reference_Sprite->SpritesBase.posCol;
+	return 0;
+}
+/**
+*	@brief	设置一个精灵地址
+*	@param	
+*		@arg	sprites 精灵体
+*		@arg	row 精灵的行
+*		@arg	col 精灵的列
+*	@retval	
+*		@arg	执行成功返回 0
+*		@arg	执行失败返回 -1
+*/
+int SpritesMov_SetPos(Sprites_t* sprites,double row,double col){
+	if(sprites == NULL) return -1;
+	sprites->SpritesBase.posRow = row;
+	sprites->SpritesBase.posCol = col;
+	return 0;
+}
 
 /**********************
 	【静态精灵体操作】
@@ -556,12 +588,11 @@ int SpritesMov_SetPosToCamera(Sprites_t* sprites,Camera_Struct* camera){
 *		@arg	posRow	精灵位置横坐标
 *		@arg	posCol	精灵位置纵坐标
 *		@arg	defaultAnimationChainIndex 设置默认动画链的序号
-*		@arg  	map_value 地图代号
 *	@retval	
 *		@arg	创键失败返回 空；
 *		@arg	创建成功返回 精灵地址
 */
-SpritesStatic_t* SpritesStatic_ObjectCreate(int AnimationManageIndex,double posRow,double posCol,unsigned char defaultAnimationChainIndex,int map_value){
+SpritesStatic_t* SpritesStatic_ObjectCreate(int AnimationManageIndex,double posRow,double posCol,unsigned char defaultAnimationChainIndex){
 	//分配内存
 	SpritesStatic_t* sprites = (SpritesStatic_t*)malloc(sizeof(SpritesStatic_t));
 	if(sprites == C_NULL)	return C_NULL;
@@ -569,7 +600,6 @@ SpritesStatic_t* SpritesStatic_ObjectCreate(int AnimationManageIndex,double posR
 	sprites->SpritesBase.posRow = posRow;
 	sprites->SpritesBase.posCol = posCol;	
 	sprites->SpritesBase.accumulatedTime = 0.0;
-	sprites->SpritesBase.map_value = map_value;	
 	sprites->SpritesBase.VerticalOffset = 0.0;
 		
 	sprites->SpritesBase.AnimMoudle.value = AnimationManageIndex;

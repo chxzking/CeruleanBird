@@ -529,7 +529,87 @@ DeepBuffer_t Camera_DeepBuffer_Read(Camera_Struct* camera,int index){
 
 
 
-
+/*******************
+	【私有域】
+********************/
+/**
+*	@brief	给摄像机添加私有变量
+*	@param
+*		@arg	camera		相机
+*		@arg	data		数据(不能为空)
+*		@arg	__FreeHandle 数据处理
+*	@retval
+*		@arg	添加成功返回0
+*		@arg	添加失败返回-1
+*/
+int CameraPriv_Add(Camera_Struct* camera,void* data,void (*__FreeHandle)(void* ptr)){
+	if(camera == NULL || data == NULL){
+		return -1;
+	}
+	camera->Camera_PrivateData.data = data;
+	camera->Camera_PrivateData.__FreeHandle = __FreeHandle;
+	return 0;
+}
+/**
+*	@brief	替换原有摄像机的私有变量
+*	@param
+*		@arg	camera		相机
+*		@arg	data		数据(不能为空)
+*		@arg	__FreeHandle 数据处理
+*	@retval
+*		@arg	添加成功返回0
+*		@arg	添加失败返回-1
+*/
+int CameraPriv_Replace(Camera_Struct* camera,void* data,void (*__FreeHandle)(void* ptr)){
+	if(camera == NULL || data == NULL){
+		return -1;
+	}
+	if(camera->Camera_PrivateData.data == NULL){
+		//如果原来没有添加私有变量
+		camera->Camera_PrivateData.data = data;
+		camera->Camera_PrivateData.__FreeHandle = __FreeHandle;
+		return 0;
+	}
+	//存在数据则先释放数据
+	if(camera->Camera_PrivateData.__FreeHandle != NULL){
+		camera->Camera_PrivateData.__FreeHandle(camera->Camera_PrivateData.data);
+	}
+	camera->Camera_PrivateData.data = data;
+	camera->Camera_PrivateData.__FreeHandle = __FreeHandle;
+	return 0;
+}
+/**
+*	@brief	重置原有的私有数据
+*	@param
+*		@arg	camera		相机
+*	@retval
+*		@arg	添加成功返回0
+*		@arg	添加失败返回-1
+*/
+int CameraPriv_Reset(Camera_Struct* camera){
+	if(camera == NULL){
+		return -1;
+	}
+	if(camera->Camera_PrivateData.__FreeHandle != NULL){
+		camera->Camera_PrivateData.__FreeHandle(camera->Camera_PrivateData.data);
+	}
+	camera->Camera_PrivateData.data = NULL;
+	camera->Camera_PrivateData.__FreeHandle = NULL;
+	return 0;
+}
+/**
+*	@brief	重置原有的私有数据
+*	@param
+*		@arg	camera		相机
+*	@retval
+*		返回私有数据
+*/
+void* CameraPriv_Get(Camera_Struct* camera){
+	if(camera == NULL){
+		return NULL;
+	}
+	return camera->Camera_PrivateData.data;
+}
 
 /****************************************************
 	

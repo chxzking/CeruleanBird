@@ -103,7 +103,7 @@ int WorldMap_COLModify(int value,int COL);
 int WorldMap_ArrayModify(int value,unsigned char* array);
 /*****************************
 		【查询操作】
-******************************/
+******************************/	
 /**
 *	@brief	获取指定绑定值的地图数组
 *	@param	
